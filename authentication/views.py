@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 from .forms import CustomUserCreationForm, UserProfileForm
 
@@ -18,3 +19,7 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_object(self):
         return self.request.user
+
+
+class HomePageView(TemplateView):
+    template_name = 'authentication/home_page.html'

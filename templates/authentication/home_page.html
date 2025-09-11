@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Головна{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home_page.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="homepage">
+    <div class="homepage-container text-center py-5">
+        <h1 class="welcome-title">Ласкаво просимо на Портал Групи!</h1>
+        <p class="welcome-text mt-3">Тут ви можете знайти всю необхідну інформацію та ресурси для вашої групи.</p>
+    </div>
+</section>
+{% endblock %}
