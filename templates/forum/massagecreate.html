@@ -1,0 +1,8 @@
+{% extends 'content'%}
+
+{% block content%}
+    <form method="post" action="{% url 'create_massage'%}">
+        {% csrf_token %}
+        {{form.as_p}}
+    </form>
+{% endblock %}
