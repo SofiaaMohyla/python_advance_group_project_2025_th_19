@@ -2,6 +2,7 @@
 
 {% block content%}
     {% for i in branchlist %}
-        {{i}}
+        <a href="{% url 'list_masage' i.pk%}">{{i}}</a><br>
     {% endfor %}
+<a href="{% url 'create_branch'%}">створити гілку</a>   
 {% endblock %}

@@ -10,4 +10,4 @@ class BranchCreateForm(forms.ModelForm):
 class MassageCreateForm(forms.ModelForm):
     class Meta:
         model = Massage
-        fields = ['branch', 'author', 'massage']
+        fields = ['massage']
