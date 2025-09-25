@@ -61,3 +61,80 @@ footer {
     font-size: 1.2rem;
     margin-top: 10px;
 }
+
+.homepage-widget {
+    background-color: #0d6efd;
+    color: #ffffff;
+    border-radius: 30px 30px 30px 0;
+    padding: 30px 40px;
+    margin-bottom: 20px;
+    display: block;
+    max-width: 800px;
+    text-align: left;
+    margin-bottom: 100px;
+    margin-top: 100px;
+}
+
+.homepage-widget h3 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+
+.homepage-widget p {
+    font-size: 1.2rem;
+    margin: 0 0 10px 0;
+}
+
+.homepage-widget a {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #0d6efd;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.homepage-widget a:hover {
+    background-color: #e0e0e0;
+}
+
+.year {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* по 3 місяці в ряд */
+    gap: 20px;
+    margin: 20px;
+}
+
+.month {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    background: #f9f9f9;
+}
+
+.month h4 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* тиждень по 7 днів */
+    gap: 5px;
+}
+
+.day {
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+    background: #fff;
+    font-size: 14px;
+}
+
+.day:hover {
+    background: #eee;
+    cursor: pointer;
+}
