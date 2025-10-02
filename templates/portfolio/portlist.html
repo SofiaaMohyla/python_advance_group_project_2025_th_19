@@ -2,6 +2,18 @@
 
 {%block content%}
     {% for i in prlist%}
-        {{i}}
+        <div сlass = "card" style="width: 18rem; border: 1px black;">
+            {% if i.media %}
+                <img src="{{i.media.url}}" class="card-img-top">
+            {% else %}
+                <img src="media/432535.jpg" class="card-img-top">
+            {% endif %}
+            <div class = "card-body">
+                <h5 class="card-title">{{i.author}}</h5>
+                <p class="card-text">{{i.text}}</p>
+                {{i.likes}}
+                <a href="{% url 'port_detail' i.pk%}" class="btn">detail</a>
+            </div>
+        </div>
     {% endfor %}
 {% endblock %}

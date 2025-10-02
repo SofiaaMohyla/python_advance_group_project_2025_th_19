@@ -1,0 +1,12 @@
+{% extends 'base.html'%}
+
+{% block content%}
+    {{prdetail.author}}<br>
+    {{prdetail.text}}<br>
+    {% if prdetail.media %}
+        <img src="{{prdetail.media.url}}"><br>
+    {% endif %}
+    <a href="{% url 'port_delete' prdetail.pk%}">delete</a>
+    {{prdetail.likes}}
+
+{% endblock %}
