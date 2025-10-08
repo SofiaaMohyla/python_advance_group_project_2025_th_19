@@ -8,4 +8,4 @@ class Portfolio(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     text = models.TextField()
     media = models.FileField(upload_to="media/",blank=True,null=True)
-    likes = models.IntegerField()
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name="likes_db")

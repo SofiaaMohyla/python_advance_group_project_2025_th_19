@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Portfolio
 from django.urls import reverse_lazy
-from django.views.generic import CreateView,ListView,DetailView,DeleteView
+from django.views.generic import CreateView,ListView,DetailView,DeleteView,UpdateView
 from .forms import PortForm
 # Create your views here.
 
@@ -29,5 +29,13 @@ class PortfolioDetailView(DetailView):
 
 class PortfolioDeleteView(DeleteView):
     model = Portfolio
-    template_name = ""
+    template_name = "portfolio/portconfirm.html"
     success_url = reverse_lazy("port_list")
+
+class PortfolioUptadeView(UpdateView):
+    model = Portfolio
+    
+def LikesAddView(request, pk):
+    post = get_object_or_404(Portfolio, id=request.POST.get('like_id'))
+    post.likes.add(request.user)
+    return reverse_lazy("port_list")
