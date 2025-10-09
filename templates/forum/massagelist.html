@@ -3,9 +3,9 @@
 {% block content%}
     {% for i in massagelist %}
         <div style="background-color:rgb(159, 164, 244); border-radius: 3%;">
-            {{i.author}}<br>
-            {{i.massage}}<br><br>
-            {% if user.is_authenticated%}
+            <p><b>{{i.author}}</b><br>{{i.massage}}</p>
+
+            {% if user == i.author or user.role == "admin"%}
                 <a href="{% url 'del_massage' i.pk%}">delete</a>
                 <a href="{% url 'upd_massage' i.pk%}">редагувати</a>
             {% endif %}
