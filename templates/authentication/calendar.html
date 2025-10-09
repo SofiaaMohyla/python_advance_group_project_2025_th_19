@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Календар{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="calendar-header">
+    <h2>Календар {{ year }}</h2>
+    {% if user.is_authenticated and user.role in 'moderator admin' %}
+    <a href="{% url 'event_add' %}" class="edit-btn">✏️ Редагувати календар</a>
+{% endif %}
+
+</div>
+
+<div class="year">
+    {% for month in calendar_data %}
+    <div class="month">
+        <h4>{{ month.name }}</h4>
+        <div class="days">
+            {% for day in month.days %}
+                {% if day.has_event and day.event_id %}
+                    <a href="{% url 'event_detail' day.event_id %}"
+                       class="day event-day"
+                       title="{{ day.event_title }}">
+                        {{ day.number }}
+                    </a>
+                {% else %}
+                    <div class="day">{{ day.number }}</div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
