@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Видалення події{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="calendar-header">
+    <h2>Видалити подію</h2>
+</div>
+
+<div class="confirm-delete">
+    <p>Ви впевнені, що хочете видалити подію <strong>"{{ object.title }}"</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="delete-btn">✅ Так, видалити</button>
+        <a href="{{ object.get_absolute_url }}" class="cancel-btn">❌ Скасувати</a>
+    </form>
+</div>
+{% endblock %}

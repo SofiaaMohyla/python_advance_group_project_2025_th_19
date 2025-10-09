@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm p-4">
+        <h2 class="mb-4 text-center">{{ object.title }}</h2>
+
+        <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item"><strong>Дата:</strong> {{ object.date }}</li>
+            <li class="list-group-item"><strong>Час:</strong> {{ object.start_time }} - {{ object.end_time }}</li>
+            <li class="list-group-item"><strong>Місце:</strong> {{ object.location }}</li>
+            <li class="list-group-item"><strong>Опис:</strong> {{ object.description }}</li>
+            <li class="list-group-item"><strong>Організатор:</strong> {{ object.organizer }}</li>
+            <li class="list-group-item"><strong>Тип події:</strong> {{ object.event_type }}</li>
+            {% if object.link %}
+            <li class="list-group-item">
+                <strong>Посилання:</strong>
+                <a href="{{ object.link }}" target="_blank">{{ object.link }}</a>
+            </li>
+            {% endif %}
+        </ul>
+
+        <div class="d-flex justify-content-between mt-3">
+            <a href="{% url 'calendar' %}" class="btn btn-secondary">⬅ Назад до календаря</a>
+
+            {% if user.is_authenticated and user.role in 'moderator admin' %}
+                <a href="{% url 'event_delete' object.pk %}" class="btn btn-danger">🗑️ Видалити подію</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

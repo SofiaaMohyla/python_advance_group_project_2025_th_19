@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}Додати подію{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <!-- Синя шапка -->
+        <div class="card-header bg-primary text-white text-center">
+            <h2 class="mb-0">Додати / Редагувати подію</h2>
+        </div>
+
+        <!-- Біле тіло форми -->
+        <div class="card-body bg-white">
+            <form method="post" class="needs-validation" novalidate>
+                {% csrf_token %}
+
+                {% for field in form %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label fw-bold">
+                        {{ field.label }}
+                    </label>
+                    {{ field|add_class:"form-control bg-white" }}
+                    {% if field.help_text %}
+                        <div class="form-text">{{ field.help_text }}</div>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="{% url 'calendar' %}" class="btn btn-secondary">⬅ Назад</a>
+                    <button type="submit" class="btn btn-primary">💾 Зберегти</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
