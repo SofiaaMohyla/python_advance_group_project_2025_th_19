@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+
+{% block content%}
+    {% for i in branchlist %}
+        <div style="background-color:rgb(159, 164, 244); border-radius: 5%; display: flex;" >
+            <p style="margin-left: 1%;"><span ><b>{{i.name}}</b></span><br><span>{{i.description}}</span>
+            </p>
+            
+            {% if user == i.author or user.role == "admin"%}
+                <br>
+                <a href="{% url 'del_branch' i.pk%}" class="btn" style="margin-left: auto;">delete</a>
+                <a href="{% url 'upd_branch' i.pk%}" class="btn">редагувати</a>
+            {% endif %}
+            <a href="{% url 'list_masage' i.pk%}" style="margin-left: auto;" class="btn btn-primary">перейти</a>
+        </div><br>
+    {% endfor %}
+<a href="{% url 'create_branch'%}">створити гілку</a>   
+{% endblock %}
