@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, CreateView, FormView, TemplateView,DeleteView
+from django.views.generic import ListView, DetailView, CreateView, FormView, TemplateView,DeleteView,UpdateView
 from .models import Branch, Massage
 from .forms import BranchCreateForm, MassageCreateForm
 from django.urls import reverse_lazy
@@ -47,3 +47,25 @@ class MassageListView(ListView):
     def get_queryset(self):
         branch = self.kwargs["pk"]
         return Massage.objects.filter(branch=branch)
+
+class MassageUpdateView(UpdateView):
+    model=Massage
+    template_name = "forum/updform.html"
+    fields=["massage"]
+    success_url = reverse_lazy("list_branch")
+
+class MassageDeleteView(DeleteView):
+    model = Massage 
+    template_name = "forum/confirmdel.html"
+    success_url = reverse_lazy("list_branch")
+
+class BranchDeleteView(DeleteView):
+    model = Branch
+    template_name = "forum/confirmdel.html"
+    success_url = reverse_lazy("list_branch")
+
+class BranchUpdateView(UpdateView):
+    model = Branch
+    fields = ["name","description"]
+    template_name = "forum/updform.html"
+    success_url = reverse_lazy("list_branch")

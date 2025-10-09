@@ -6,7 +6,7 @@ from django.conf import settings
 class Branch(models.Model):
     name = models.CharField(max_length=100)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
-    description = models.TextField()
+    description = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name

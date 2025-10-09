@@ -2,7 +2,16 @@
 
 {% block content%}
     {% for i in branchlist %}
-        <a href="{% url 'list_masage' i.pk%}">{{i}}</a><br>
+        <div style="background-color:rgb(159, 164, 244); border-radius: 5%; display: flex;" >
+            <p style="margin-left: 1%;"><span ><b>{{i.name}}</b></span><br><span>{{i.description}}</span>
+            </p>
+            <a href="{% url 'list_masage' i.pk%}" style="margin-left: auto;" class="btn btn-primary">перейти</a>
+            {% if user.is_authenticated%}
+                <br>
+                <a href="{% url 'del_branch' i.pk%}">delete</a>
+                <a href="{% url 'upd_branch' i.pk%}">редагувати</a>
+            {% endif %}
+        </div><br>
     {% endfor %}
 <a href="{% url 'create_branch'%}">створити гілку</a>   
 {% endblock %}
