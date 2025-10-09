@@ -1,15 +1,27 @@
 {% extends 'base.html'%}
-
+{% load static %}
 {% block content%}
-    <div>
+    <div style="background-color: gray; width: 50%;">
         {% if prdetail.media %}
-            <img src="{{prdetail.media.url}}" style="width: 50%;"><br>
+            <img src="{{prdetail.media.url}}" class="card-img-top"><br>
+        {% else %}
+            <img src="{% static 'images/no-images.png' %}" class="card-img-top" ><br>
         {% endif %}
+
         {{prdetail.author}}<br>
         {{prdetail.text}}<br>
-        <p>likes:{{prdetail.likes}}</p>
         
-        <a href="{% url 'port_delete' prdetail.pk%}">delete</a>
+        <div style="display: flex;">
+            <p>likes:{{total_likes}}</p>
+            <form method="post" action="{% url 'like' prdetail.pk%}">
+                {% csrf_token %}
+                <button type="submit" value="{{prdetail.id}}" name="like_id">Like</button>
+            </form>
+            
+        </div>
+        {% if user == prdetail.author or user.role == "admin"%}
+            <a href="{% url 'port_delete' prdetail.pk%}" class="btn btn-primary">delete</a>
+        {% endif %}
         
     </div>
 {% endblock %}

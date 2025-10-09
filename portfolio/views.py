@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Portfolio
 from django.urls import reverse_lazy
 from django.views.generic import CreateView,ListView,DetailView,DeleteView,UpdateView
@@ -19,13 +19,19 @@ class PortfolioCreateView(CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        form.instance.likes = 0
         return super().form_valid(form)
 
 class PortfolioDetailView(DetailView):
     model = Portfolio
     template_name = "portfolio/portdetail.html"
     context_object_name = "prdetail"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(PortfolioDetailView, self).get_context_data()
+        stuff = get_object_or_404(Portfolio, id=self.kwargs['pk'])
+        total_likes = stuff.total_likes()
+        context["total_likes"] = total_likes
+        return context
 
 class PortfolioDeleteView(DeleteView):
     model = Portfolio
@@ -38,4 +44,4 @@ class PortfolioUptadeView(UpdateView):
 def LikesAddView(request, pk):
     post = get_object_or_404(Portfolio, id=request.POST.get('like_id'))
     post.likes.add(request.user)
-    return reverse_lazy("port_list")
+    return redirect("port_list")

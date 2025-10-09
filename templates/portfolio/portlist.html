@@ -12,13 +12,11 @@
                 <h5 class="card-title">{{i.author}}</h5>
                 <p class="card-text">{{i.text}}</p>
                 <div style="display: flex;">
-                    <form method="post" action="{% url 'like' i.pk%}">
+                    <!-- <form method="post" action="{% url 'like' i.pk%}">
                         {% csrf_token %}
                         <button type="submit" value="{{i.id}}" name="like_id">Like</button>
                     </form>
-                    <p>{{i.likes}} -likes </p>
-                    
-                    
+                    <p>{{i.likes}} -likes </p> -->
                     <a href="{% url 'port_detail' i.pk%}" class="btn btn-primary" style="margin-left: auto;">detail</a>
                 </div>
             </div>

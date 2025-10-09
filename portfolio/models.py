@@ -9,3 +9,6 @@ class Portfolio(models.Model):
     text = models.TextField()
     media = models.FileField(upload_to="media/",blank=True,null=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name="likes_db")
+
+    def total_likes(self):
+        return self.likes.count()
